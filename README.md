@@ -17,8 +17,7 @@ terraform apply -var 'key_name=terraform' -var 'public_key_path=/Users/chris/.ss
 terraform output --json > test/verify/files/terraform.json
 inspec exec test/verify -t aws://
 ```
-
-![InSpec Test Result](docs/terraform.png)
+![InSpec Test Result](https://github.com/chris-rock/inspec-verify-provision/raw/master/docs/terraform_inspec.png "InSpec Test Result")
 
 ## License
 
