@@ -1,0 +1,17 @@
+{
+    "address": {
+        "sensitive": false,
+        "type": "string",
+        "value": "terraform-example-elb-1855342650.eu-central-1.elb.amazonaws.com"
+    },
+    "instance_id": {
+        "sensitive": false,
+        "type": "string",
+        "value": "i-0ff54fc6cbee5c449"
+    },
+    "vpc_id": {
+        "sensitive": false,
+        "type": "string",
+        "value": "vpc-eda80386"
+    }
+}

@@ -1,0 +1,8 @@
+name: verify
+title: InSpec Profile to verify Terraform provisioning
+maintainer: Christoph Hartmann
+copyright: Christoph Hartmann
+copyright_email: chris@lollyrock.com
+license: Apache-2.0
+summary: An InSpec test profile to verify terrafrom setups
+version: 0.1.0
