@@ -1,0 +1,4 @@
+project_number: 41681219238
+storage_bucket: gcp-inspec-storage-bucket-rgjqbngjzyeofzh
+instance_zone: europe-west2-a
+instance_name: gcp-inspec-int-linux-vm

@@ -1,0 +1,13 @@
+name: gcp-example-profile
+title: InSpec Profile
+maintainer: Christoph Hartmann
+copyright: Christoph Hartmann
+copyright_email: chris@lollyrock.com
+license: Apache-2.0
+summary: An GCP InSpec Compliance Profile
+version: 0.1.0
+depends:
+  - name: gcp
+    url: https://github.com/inspec/inspec-gcp/archive/master.tar.gz
+supports:
+- platform: gcp
