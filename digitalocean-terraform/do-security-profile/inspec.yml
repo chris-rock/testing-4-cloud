@@ -1,0 +1,8 @@
+name: digitalocean-security
+version: 0.1.0
+inspec_version: '>= 2.3.10'
+depends:
+  - name: inspec-digitalocean
+    url: https://github.com/inspec/inspec-digitalocean
+supports:
+  platform: digitalocean

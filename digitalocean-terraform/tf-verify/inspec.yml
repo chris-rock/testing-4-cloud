@@ -1,0 +1,19 @@
+name: tf-verify
+version: 0.1.0
+inspec_version: '>= 2.3.10'
+depends:
+  - name: inspec-gcp
+    path: ../../inspec-digitalocean
+supports:
+  platform: digitalocean
+attributes:
+  - name: digitalocean_certificate.web
+    required: true
+  - name: digitalocean_droplet.web
+    required: true
+  - name: digitalocean_loadbalancer.public
+    required: true
+  - name: digitalocean_tag.web
+    required: true
+  - name: digitalocean_ssh_key.key
+    required: true

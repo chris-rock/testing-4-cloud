@@ -1,0 +1,4 @@
+name: do_droplet_profile
+version: 0.1.0
+supports:
+  platform: unix
