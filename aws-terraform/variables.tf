@@ -10,6 +10,10 @@ Example: ~/.ssh/terraform.pub
 DESCRIPTION
 }
 
+variable "private_key_path" {
+	description = "Path to the SSH private key used for authentication"
+}
+
 variable "key_name" {
   description = "Desired name of AWS key pair"
 }

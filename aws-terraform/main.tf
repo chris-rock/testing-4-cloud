@@ -110,6 +110,8 @@ resource "aws_instance" "web" {
   connection {
     # The default username for our AMI
     user = "ubuntu"
+		host = aws_instance.web.public_ip
+		private_key="${file(var.private_key_path)}"
 
     # The connection will use the local SSH agent for authentication.
   }
