@@ -25,7 +25,7 @@ The following example will provision a two-tier terraform architecture on AWS. I
 cd aws-terraform
 # run terraform
 terraform init
-terraform apply -var 'key_name=terraform' -var 'public_key_path=/Users/chris/.ssh/id_rsa.pub'
+terraform apply -var 'key_name=terraform' -var 'public_key_path=/Users/chris/.ssh/id_rsa.pub' -var 'private_key_path=/Users/chris/.ssh/id_rsa.pub'
 
 # use terraform variables with InSpec
 terraform output -json > test/verify/files/terraform.json

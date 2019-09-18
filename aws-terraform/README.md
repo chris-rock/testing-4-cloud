@@ -80,10 +80,10 @@ cd terraform
 terraform init
 
 # run terraform to apply the changes
-terraform apply -var 'key_name=terraform' -var 'public_key_path=/Users/chris/.ssh/id_rsa.pub'
+terraform apply -var 'key_name=terraform' -var 'public_key_path=/Users/chris/.ssh/id_rsa.pub' -var 'private_key'path=/Users/chris/.ssh/id_rsa'
 
 # make terraform variables available to inspec
-terraform output --json > test/verify/files/terraform.json
+terraform output -json > test/verify/files/terraform.json
 
 # run the inspec profile to verify the setup
 inspec exec test/verify -t aws://
