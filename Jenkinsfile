@@ -12,8 +12,8 @@ pipeline {
                       '''
                       echo -e "\nplan stage\n"
                       echo "Terraform plan"
-                      sh('whoami')
-                      sh('pwd')
+                      sh('terraform')
+                      sh('type terraform')
                       '''  
                   )
             }
