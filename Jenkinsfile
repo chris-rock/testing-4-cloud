@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Plan'){
             steps{
-              //sshagent(['git_cred']){
+             // sshagent(['git_cred']){
                   sh(
                       '''
                       echo -e "\nplan stage\n"
@@ -17,13 +17,13 @@ pipeline {
                       sh('pwd')
                       '''  
                   )
-              }
+             // }
             }
 
         }
         stage('apply'){
             steps{
-              //sshagent(['git_cred']){
+              sshagent(['git_cred']){
                   sh(
                       '''
                       echo -e "\nPlanning\n"
@@ -32,7 +32,7 @@ pipeline {
                       sh('pwd')
                       '''  
                   )
-              }
+              //}
             }
 
         }
