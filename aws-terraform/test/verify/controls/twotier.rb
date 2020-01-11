@@ -28,16 +28,16 @@ describe aws_elb(elb_name: 'terraform-example-elb') do
   its('dns_name') { should cmp ADDRESS }
 end
 
-describe aws_security_group(group_name: 'terraform_example') do
+describe aws_security_group(group_name: 'terraform_d4devops') do
   it { should exist }
-  its('group_name') { should eq 'terraform_example' }
+  its('group_name') { should eq 'terraform_d4devops' }
   its('description') { should eq 'Used in the terraform' }
   its('vpc_id') { should eq VPC_ID }  
 end
 
-describe aws_security_group(group_name: 'terraform_example_elb') do
+describe aws_security_group(group_name: 'terraform_d4devops_elb') do
   it { should exist }
-  its('group_name') { should eq 'terraform_example_elb' }
+  its('group_name') { should eq 'terraform_d4devops_elb' }
   its('description') { should eq 'Used in the terraform' }
   its('vpc_id') { should eq VPC_ID }  
 end
