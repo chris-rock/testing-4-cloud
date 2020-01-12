@@ -2,8 +2,8 @@ pipeline {
     agent { label 'master'}
 
     parameters{
-        string(name: 'KEY', defaultValue: 'here', description: 'key')
-        string(name:'TOKEN', defaultValue: 'here', description: 'token')
+        string(name: 'AWS_ACCESS_KEY', defaultValue: '', description: 'key')
+        string(name:'AWS_SECRET_ACCESS_KEY', defaultValue: '', description: 'token')
     }
     stages {
         stage('Terraform Install'){

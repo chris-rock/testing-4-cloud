@@ -8,6 +8,8 @@ status=$?
 #nlookup status
 if [ $status -eq 0 ]; then
   echo "terraform  found"
+  export ${AWS_ACCESS_KEY}
+  export ${AWS_SECRET_ACCESS_KEY}
   cd aws-terraform; terraform plan -var 'key_name=terraform' -var 'public_key_path=/home/ec2-user/.ssh/id_rsa.pub'
   exit 0 
   else 
@@ -19,5 +21,3 @@ if [ $status -eq 0 ]; then
   cd aws-terraform; terraform init
   exit  $status
 fi
-
-
