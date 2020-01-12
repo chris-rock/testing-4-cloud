@@ -24,20 +24,20 @@ end
 #  it { should exist }
 #end
 
-describe aws_elb(elb_name: 'terraform-zzz-elb') do
+describe aws_elb(elb_name: 'terraform-d4devops-elb') do
   its('dns_name') { should cmp ADDRESS }
 end
 
-describe aws_security_group(group_name: 'terraform_zzz') do
+describe aws_security_group(group_name: 'terraform_d4devops') do
   it { should exist }
-  its('group_name') { should eq 'terraform_zzz' }
+  its('group_name') { should eq 'terraform_d4devops' }
   its('description') { should eq 'Used in the terraform' }
   its('vpc_id') { should eq VPC_ID }  
 end
 
-describe aws_security_group(group_name: 'terraform_zzz_elb') do
+describe aws_security_group(group_name: 'terraform_d4devops_elb') do
   it { should exist }
-  its('group_name') { should eq 'terraform_zzz_elb' }
+  its('group_name') { should eq 'terraform_d4devops_elb' }
   its('description') { should eq 'Used in the terraform' }
   its('vpc_id') { should eq VPC_ID }  
 end
