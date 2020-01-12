@@ -24,7 +24,8 @@ end
 #  it { should exist }
 #end
 
-describe aws_elb(elb_name: 'terraform-example-elb') do
+
+describe aws_elb(elb_name: 'terraform-d4devops-elb') do
   its('dns_name') { should cmp ADDRESS }
 end
 
@@ -45,5 +46,5 @@ end
 describe aws_ec2_instance(INTANCE_ID) do
   it { should be_running }
   its('instance_type') { should eq 't2.micro' }
-  its('image_id') { should eq 'ami-1d4e7a66' }
+  its('image_id') { should eq 'ami-03998867' }
 end
