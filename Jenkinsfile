@@ -8,27 +8,27 @@ pipeline {
     stages {
         stage('Plan'){
             steps{
+             // sshagent(['git_cred']){
                   sh(
                       '''
-                      echo -e "\nplan stage\n"
-                      echo "Terraform plan"
-                      sh('terraform')
-                      sh('type terraform')
+                      sh 'terrafom -v'
+                      sh 'which terraform'
                       '''  
                   )
+             // }
             }
 
         }
         stage('apply'){
             steps{
+              //sshagent(['git_cred']){
                   sh(
                       '''
-                      echo -e "\nPlanning\n"
-                      echo "Terraform plan"
-                      sh('ls')
-                      sh('pwd')
+                      sh 'inspec -v'
+                      sh 'which inspec'
                       '''  
                   )
+              //}
             }
 
         }
