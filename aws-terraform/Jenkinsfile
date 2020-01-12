@@ -13,8 +13,8 @@ pipeline {
                       '''
                       echo -e "\nplan stage\n"
                       echo "Terraform plan"
-                      sh('whoami')
-                      sh('pwd')
+                      sh 'terrafom -v'
+                      sh 'which terraform'
                       '''  
                   )
              // }
@@ -27,9 +27,9 @@ pipeline {
                   sh(
                       '''
                       echo -e "\nPlanning\n"
-                      echo "Terraform plan"
-                      sh('ls')
-                      sh('pwd')
+                      echo "Inspec plan"
+                      sh 'inspec -v'
+                      sh 'which inspec'
                       '''  
                   )
               //}
