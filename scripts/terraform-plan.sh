@@ -8,7 +8,7 @@ status=$?
 #nlookup status
 if [ $status -eq 0 ]; then
   echo "terraform  found"
-  cd aws-terraform; terraform plan
+  cd aws-terraform; terraform plan -var 'key_name=terraform' -var 'public_key_path=/home/ec2-user/.ssh/id_rsa.pub'
   exit 0 
   else 
   wget https://releases.hashicorp.com/terraform/0.12.19/terraform_0.12.19_linux_amd64.zip
