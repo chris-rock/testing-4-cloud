@@ -8,6 +8,7 @@ connect.
 
 Example: ~/.ssh/terraform.pub
 DESCRIPTION
+
 }
 
 variable "key_name" {
@@ -23,9 +24,10 @@ variable "aws_region" {
 variable "aws_amis" {
   default = {
     eu-central-1 = "ami-fa2fb595"
-    eu-west-1 = "ami-674cbc1e"
-    us-east-1 = "ami-1d4e7a66"
-    us-west-1 = "ami-969ab1f6"
-    us-west-2 = "ami-8803e0f0"
+    eu-west-1    = "ami-674cbc1e"
+    us-east-1    = "ami-1d4e7a66"
+    us-west-1    = "ami-969ab1f6"
+    us-west-2    = "ami-8803e0f0"
   }
 }
+
