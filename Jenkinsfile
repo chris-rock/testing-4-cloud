@@ -54,11 +54,11 @@ pipeline {
                   )
             }
         }
-        stage('Inspec binary install'){
+        stage('Inspec  install'){
             steps{
                   sh(
                       '''
-                      echo 'Inspec binary install'
+                      sh 'scripts/inspec-install.sh.sh'
                       '''  
                   )
             }
