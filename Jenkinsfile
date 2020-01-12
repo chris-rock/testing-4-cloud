@@ -21,7 +21,7 @@ pipeline {
             steps{
                   sh(
                       '''
-                      sh 'terraform -v'
+                      sh 'scripts/terraform-init.sh'
                       '''  
                   )
             }
