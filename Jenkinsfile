@@ -27,6 +27,14 @@ pipeline {
             }
 
         }
-    
+        stage('Terraform Plan'){
+            steps{
+                  sh(
+                      '''
+                      sh 'scripts/terraform-plan.sh'
+                      '''  
+                  )
+            }
+        }
     }
 }
