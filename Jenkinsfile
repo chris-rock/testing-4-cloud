@@ -6,29 +6,24 @@ pipeline {
         string(name:'TOKEN', defaultValue: 'here', description: 'token')
     }
     stages {
-        stage('Plan'){
+        stage('Terraform Install'){
             steps{
-             // sshagent(['git_cred']){
                   sh(
                       '''
                       sh 'scripts/terraform-install.sh'
-                      sh 'which terraform'
+        
                       '''  
                   )
-             // }
             }
 
         }
-        stage('apply'){
+        stage('Terraform init'){
             steps{
-              //sshagent(['git_cred']){
                   sh(
                       '''
-                      sh 'inspec -v'
-                      sh 'which inspec'
+                      sh 'terraform -v'
                       '''  
                   )
-              //}
             }
 
         }
