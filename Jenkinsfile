@@ -40,7 +40,7 @@ pipeline {
             steps{
                   sh(
                       '''
-                      echo 'Terraform apply here'
+                      sh 'scripts/terraform-apply.sh'
                       '''  
                   )
             }
@@ -49,7 +49,7 @@ pipeline {
             steps{
                   sh(
                       '''
-                      echo 'Terraform out here'
+                      sh 'scripts/terraform-out.sh'
                       '''  
                   )
             }
