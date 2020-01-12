@@ -24,6 +24,7 @@ end
 #  it { should exist }
 #end
 
+
 describe aws_elb(elb_name: 'terraform-d4devops-elb') do
   its('dns_name') { should cmp ADDRESS }
 end
