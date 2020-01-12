@@ -67,7 +67,7 @@ pipeline {
             steps{
                   sh(
                       '''
-                      echo 'Inspec test execution'
+                      sh 'inspec exec test/verify -t aws://'
                       '''  
                   )
             }
