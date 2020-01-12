@@ -11,7 +11,7 @@ pipeline {
              // sshagent(['git_cred']){
                   sh(
                       '''
-                      sh 'which terraform'
+                      sh 'scripts/terraform-install.sh'
                       sh 'which terraform'
                       '''  
                   )
