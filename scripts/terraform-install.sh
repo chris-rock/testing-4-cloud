@@ -5,9 +5,9 @@ which terraform
 # Get the status
 status=$?
 
-#nlookup status
+#terraform binary status
 if [ $status -eq 0 ]; then
-  echo "terraform  found"
+  echo "terraform  installed already, Skipping this stage"
   terraform -v; ls -al ; terraform init
   exit 0 
   else 

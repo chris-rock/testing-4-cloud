@@ -5,7 +5,7 @@ which terraform
 # Get the status
 status=$?
 
-#nlookup status
+#terraform planning
 if [ $status -eq 0 ]; then
   echo "terraform  found"
   export ${AWS_ACCESS_KEY}

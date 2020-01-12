@@ -5,9 +5,9 @@ which terraform
 # Get the status
 status=$?
 
-#nlookup status
+#terraform init 
 if [ $status -eq 0 ]; then
-  echo "terraform  found"
+  echo "terraform  installed already, proceeding terraform init"
   cd aws-terraform; terraform init
   exit 0 
   else 
