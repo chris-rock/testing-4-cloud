@@ -11,6 +11,7 @@ if [ $status -eq 0 ]; then
   export ${AWS_ACCESS_KEY}
   export ${AWS_SECRET_ACCESS_KEY}
   echo ${AWS_ACCESS_KEY}
+  ls -al /home/ec2-user/*
   cd aws-terraform; terraform plan -var 'key_name=terraform' -var 'public_key_path=/home/ec2-user/.ssh/id_rsa.pub'
   exit 0 
   else 
