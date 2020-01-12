@@ -45,5 +45,5 @@ end
 describe aws_ec2_instance(INTANCE_ID) do
   it { should be_running }
   its('instance_type') { should eq 't2.micro' }
-  its('image_id') { should eq 'ami-1d4e7a66' }
+  its('image_id') { should eq 'ami-03998867' }
 end
