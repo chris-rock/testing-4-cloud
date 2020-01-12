@@ -1,7 +1,7 @@
 #!/bin/bash
 
 which inspec
-
+type inspec 
 # Get the status
 status=$?
 
