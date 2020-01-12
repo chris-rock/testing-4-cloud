@@ -1,0 +1,109 @@
+import groovy.json.JsonSlurper
+import groovy.json.StringEscapeUtils
+
+
+node("dockerv2") {
+
+  properties([
+    disableConcurrentBuilds()
+  ])
+
+  def slurper = new groovy.json.JsonSlurper()
+
+  def shout = { String cmd -> sh(script: cmd.trim(), returnStdout: true).trim() }
+
+  def PULL_REQUEST_ID
+  def DELETE_COUNT
+  def PLAN
+  def GIT_COMMIT_HASH
+  def PR
+
+  def PROJECT_URL = "https://stash.es.ad.adp.com/rest/api/1.0/projects/TF/repos/module.core.secrets"
+
+  def commentPullRequest = { String comment ->
+    if (PULL_REQUEST_ID != null) {
+
+      httpRequest acceptType: 'APPLICATION_JSON',
+                  authentication: '33c29699-8049-4dee-807f-62fc97e86fb9',
+                  contentType: 'APPLICATION_JSON',
+                  httpMode: 'POST',
+                  requestBody: '{"text":"'+ comment +'"}',
+                  quiet: true,
+                  url: "${PROJECT_URL}/pull-requests/${PULL_REQUEST_ID}/comments"
+    }
+
+  }
+
+  ansiColor('xterm') {
+    timestamps {
+      withEnv([
+          "ENVIRONMENT=sre"
+      ]) {
+
+
+        try {
+          stage('Validate') {
+            cleanWs()
+            checkout scm
+
+            GIT_COMMIT_HASH = shout 'git log -1 --format=%H'
+            PR = httpRequest  acceptType: 'APPLICATION_JSON',
+                              authentication: '33c29699-8049-4dee-807f-62fc97e86fb9',
+                              contentType: 'APPLICATION_JSON',
+                              quiet: true,
+                              url: "${PROJECT_URL}/commits/${GIT_COMMIT_HASH}/pull-requests"
+
+            try { PULL_REQUEST_ID = slurper.parseText(PR.content).values[0].id } catch(java.lang.NullPointerException ex) { println(PR.content) }
+
+            println "Discovered PR: " + PULL_REQUEST_ID
+            commentPullRequest "The build has been started. Please hang tight while we are testing your PR. Build URL: ${env.BUILD_URL}"
+
+            sh 'make auth'
+            sh 'make init'
+            sh 'make validate'
+
+          }
+          stage('Plan') {
+            sh 'make mysql' // Start mysql early so that it will be at ready state while running tests later
+
+            sh 'TF_CLI_ARGS_plan="-no-color" make plan | tee plan.log'
+
+            PLAN = shout "cat plan.log | sed -n '/-------------------/,/--------------------/p'"
+
+            commentPullRequest "Reviewers, please review the `terraform plan` output carefully before approving this PR. \\n\\n```" + StringEscapeUtils.escapeJava(PLAN) + "\\n```\\n\\nYou can ingore the null resources(2) being deleted."
+
+            DELETE_COUNT = shout "grep ' to destroy.' plan.log | awk '{print \$8}'"
+
+            if (DELETE_COUNT.toInteger() > 2) {
+              println "Number of resources being destroyed(including null resources): " + DELETE_COUNT
+
+              commentPullRequest "Looks like your PR is attempting to delete some resources. We can't automatically approve it. It needs to be manually approved. Please reach out to the SRE team if you need any help."
+
+              currentBuild.result = 'ABORTED'
+              error('Build stopped!')
+
+            }
+          }
+
+          stage('Apply') {
+            sh 'ENVIRONMENT=sre TF_CLI_ARGS_apply="-auto-approve=true" make apply'
+          }
+
+          stage('Test') {
+            sh 'make test'
+          }
+
+          commentPullRequest "Good news! This PR passes all checks and tests!"
+
+        } catch (Exception err) {
+            currentBuild.result = 'FAILURE'
+            commentPullRequest "This PR didn't pass all checks and tests!"
+        } finally {
+          stage('Cleanup') {
+            sh 'make clean'
+          }
+        }
+      }
+    }
+  }
+}
