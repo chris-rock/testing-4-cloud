@@ -36,5 +36,41 @@ pipeline {
                   )
             }
         }
+        stage('Terraform apply'){
+            steps{
+                  sh(
+                      '''
+                      echo 'Terraform apply here'
+                      '''  
+                  )
+            }
+        }
+        stage('Terraform out'){
+            steps{
+                  sh(
+                      '''
+                      echo 'Terraform out here'
+                      '''  
+                  )
+            }
+        }
+        stage('Inspec binary install'){
+            steps{
+                  sh(
+                      '''
+                      echo 'Inspec binary install'
+                      '''  
+                  )
+            }
+        }
+        stage('Inspec test execution'){
+            steps{
+                  sh(
+                      '''
+                      echo 'Inspec test execution'
+                      '''  
+                  )
+            }
+        }
     }
 }
