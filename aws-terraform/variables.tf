@@ -17,7 +17,7 @@ variable "key_name" {
 
 variable "aws_region" {
   description = "AWS region to launch servers."
-  default     = "us-east-1"
+  default     = "eu-west-2"
 }
 
 # Ubuntu Precise 12.04 LTS (x64)
@@ -25,6 +25,7 @@ variable "aws_amis" {
   default = {
     eu-central-1 = "ami-fa2fb595"
     eu-west-1    = "ami-674cbc1e"
+    eu-west-2    = "ami-03998867"
     us-east-1    = "ami-1d4e7a66"
     us-west-1    = "ami-969ab1f6"
     us-west-2    = "ami-8803e0f0"
