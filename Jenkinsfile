@@ -67,7 +67,7 @@ pipeline {
             steps{
                   sh(
                       '''
-                      sh scripts/inspec-test.sh'
+                      sh 'scripts/inspec-test.sh'
                       '''  
                   )
             }
