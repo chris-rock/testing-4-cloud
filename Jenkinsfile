@@ -2,36 +2,39 @@ pipeline {
     agent { label 'master'}
 
     parameters{
-        string(name: 'KEY', defaultValue: 'here', description: 'key')
-        string(name:'TOKEN', defaultValue: 'here', description: 'token')
+        string(name:'AWS_ACCESS_KEY', defaultValue: '', description: 'AWS_ACCESS_KEY')
+        string(name:'AWS_SECRET_ACCESS_KEY', defaultValue: '', description: 'AWS_SECRET_ACCESS_KEY')
     }
     stages {
-        stage('Plan'){
+        stage('Terraform Install'){
             steps{
                   sh(
                       '''
-                      echo -e "\nplan stage\n"
-                      echo "Terraform plan"
-                      sh('terraform')
-                      sh('type terraform')
+                      sh 'scripts/terraform-install.sh'
+        
                       '''  
                   )
             }
 
         }
-        stage('apply'){
+        stage('Terraform init'){
             steps{
                   sh(
                       '''
-                      echo -e "\nPlanning\n"
-                      echo "Terraform plan"
-                      sh('ls')
-                      sh('pwd')
+                      sh 'scripts/terraform-init.sh'
                       '''  
                   )
             }
 
         }
-    
+        stage('Terraform Plan'){
+            steps{
+                  sh(
+                      '''
+                      sh 'scripts/terraform-plan.sh'
+                      '''  
+                  )
+            }
+        }
     }
 }
